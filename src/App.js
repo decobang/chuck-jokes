@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import CategorySelector from './components/CategorySelector';
 import JokeDisplay from './components/JokeDisplay';
@@ -21,7 +21,7 @@ function App() {
 
   
 
-  const getRandomJoke = (category) => {
+  const getRandomJoke = useCallback((category) => {
     fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
       .then((response) => response.json())
       .then((data) => {
@@ -32,7 +32,7 @@ function App() {
           getRandomJoke(category);
         }
       });
-  };
+  }, [usedJokeIds]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
