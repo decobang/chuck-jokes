@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../styles/CategorySelector.module.css';
 
 function CategorySelector({ categories, selectedCategory, onCategoryChange }) {
     return (
-        <select value={selectedCategory} onChange={onCategoryChange}>
+        <select className={styles.selector} value={selectedCategory} onChange={onCategoryChange}>
             {categories.map(category => (
                 <option key={category} value={category}>{category}</option>
             ))}
