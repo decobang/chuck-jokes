@@ -3,12 +3,16 @@ import styles from '../styles/CategorySelector.module.css';
 
 function CategorySelector({ categories, selectedCategory, onCategoryChange }) {
     return (
-        <select className={styles.selector} value={selectedCategory} onChange={onCategoryChange}>
-            {categories.map(category => (
-                <option key={category} value={category}>{category}</option>
+        <div className={styles['categories-container']}>
+            {categories.map((category) => (
+                <div 
+                    key={category} 
+                    className={styles.category} 
+                    onClick={() => onCategoryChange(category)}
+                >
+                    {category}
+                </div>
             ))}
-        </select>
+        </div>
     );
 }
-
-export default CategorySelector;

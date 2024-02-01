@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import CategorySelector from './components/CategorySelector';
 import JokeDisplay from './components/JokeDisplay';
+import styles from './App.module.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -31,17 +31,17 @@ function App() {
   const handleButtonClick = () => {
     getRandomJoke(selectedCategory);
   };
-
   return (
-    <div className="container">
-      <h1>Chuck Jokes</h1>
-      <CategorySelector 
-        categories={categories} 
-        selectedCategory={selectedCategory} 
-        onCategoryChange={handleCategoryChange} 
-      />
-      <button onClick={handleButtonClick}>Get Joke</button>
+    <div className={styles['main-container']}>
+      <h1 className={styles['title']}>Chuck-Jokes</h1>
+        <CategorySelector 
+          categories={categories} 
+          selectedCategory={selectedCategory} 
+          onCategoryChange={handleCategoryChange} 
+        />
       <JokeDisplay joke={joke} />
+  
+     <button className={styles.button} onClick={handleButtonClick}>Next</button>
     </div>
   );
 }
