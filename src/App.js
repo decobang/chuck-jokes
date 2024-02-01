@@ -15,9 +15,8 @@ function App() {
       .then(response => {
         setCategories(response.data);
         setSelectedCategory(response.data[0]);
+        getRandomJoke(response.data[0]); // Call getRandomJoke here
       });
-
-      getRandomJoke(selectedCategory);
   }, []);
 
   
@@ -38,9 +37,18 @@ function App() {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
+
+  function Header() {
+    return (
+      <header className={styles.header}>
+        <h1 className={styles.title}>Chuck-Jokes</h1>
+      </header>
+    );
+  }
+
   return (
     <div className={styles['main-container']}>
-      <h1 className={styles['title']}>Chuck-Jokes</h1>
+      <Header />
         <CategorySelector 
           categories={categories} 
           selectedCategory={selectedCategory} 
