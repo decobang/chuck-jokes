@@ -7,7 +7,7 @@ function CategorySelector({ categories, selectedCategory, onCategoryChange }) {
             {categories.map((category) => (
                 <div 
                     key={category} 
-                    className={styles.category} 
+                    className={`${styles.category} ${category === selectedCategory ? styles['category-selected'] : ''}`}
                     onClick={() => onCategoryChange(category)}
                 >
                     {category}
@@ -16,3 +16,5 @@ function CategorySelector({ categories, selectedCategory, onCategoryChange }) {
         </div>
     );
 }
+
+export default CategorySelector;

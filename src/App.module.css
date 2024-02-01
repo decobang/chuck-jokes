@@ -7,7 +7,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .main-container {
@@ -16,7 +17,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 70vh;
-  min-width: 70vw;
+  min-height: 500px;
+  max-width: 70vw;
   background-color: whitesmoke; /* Light gray */
   margin: 0 auto; /* Center the container */
   border-radius: 12px;
@@ -33,6 +35,7 @@ body {
   color: white;
   border: none;
   padding: 10px 20px;
+  margin: 10px 0;
   cursor: pointer;
   text-align: center;
   text-decoration: none;

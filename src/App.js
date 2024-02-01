@@ -8,6 +8,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [joke, setJoke] = useState('');
+  const [usedJokeIds, setUsedJokeIds] = useState([]);
 
   useEffect(() => {
     axios.get('https://api.chucknorris.io/jokes/categories')
@@ -15,21 +16,27 @@ function App() {
         setCategories(response.data);
         setSelectedCategory(response.data[0]);
       });
+
+      getRandomJoke(selectedCategory);
   }, []);
 
+  
+
   const getRandomJoke = (category) => {
-    axios.get(`https://api.chucknorris.io/jokes/random?category=${category}`)
-      .then(response => {
-        setJoke(response.data.value);
+    fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!usedJokeIds.includes(data.id)) {
+          setJoke(data.value);
+          setUsedJokeIds([...usedJokeIds, data.id]);
+        } else {
+          getRandomJoke(category);
+        }
       });
   };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
-
-  const handleButtonClick = () => {
-    getRandomJoke(selectedCategory);
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
   };
   return (
     <div className={styles['main-container']}>
@@ -39,9 +46,8 @@ function App() {
           selectedCategory={selectedCategory} 
           onCategoryChange={handleCategoryChange} 
         />
-      <JokeDisplay joke={joke} />
-  
-     <button className={styles.button} onClick={handleButtonClick}>Next</button>
+    <JokeDisplay joke={joke} onSwipeLeft={() => getRandomJoke(selectedCategory)} />
+    <button className={styles.button} onClick={() => getRandomJoke(selectedCategory)}>Next</button>
     </div>
   );
 }
