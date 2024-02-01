@@ -41,7 +41,7 @@ function App() {
   function Header() {
     return (
       <header className={styles.header}>
-        <h1 className={styles.title}>Chuck-Jokes</h1>
+        <h1 className={styles.title}>Chuck-N-Jokes</h1>
       </header>
     );
   }
