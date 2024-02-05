@@ -46,6 +46,15 @@ function App() {
     );
   }
 
+  function Footer() {
+    return (
+      <footer className={styles.footer}>
+        <p>Created by David Coggin | [DC-5] | Powered by Chuck Norris Jokes API | 2024 Copyright</p>
+        
+        </footer>
+    );
+    }
+
   return (
     <div className={styles['main-container']}>
       <Header />
@@ -56,6 +65,7 @@ function App() {
         />
     <JokeDisplay joke={joke} onSwipeLeft={() => getRandomJoke(selectedCategory)} />
     <button className={styles.button} onClick={() => getRandomJoke(selectedCategory)}>Next</button>
+    <Footer />
     </div>
   );
 }
