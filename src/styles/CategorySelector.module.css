@@ -8,7 +8,7 @@
     scrollbar-width: none; /* Firefox */
     gap: 4px;
     margin-top: 1rem;
-    
+    min-height: 50px;
 }
 .categories-container::-webkit-scrollbar { /* Chrome, Safari, Edge */
     display: none;
