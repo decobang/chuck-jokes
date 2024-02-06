@@ -12,16 +12,6 @@ function App() {
   const [joke, setJoke] = useState("");
   const [usedJokeIds, setUsedJokeIds] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://api.chucknorris.io/jokes/categories")
-      .then((response) => {
-        setCategories(response.data);
-        setSelectedCategory(response.data[0]);
-        getRandomJoke(response.data[0]); // Call getRandomJoke here
-      });
-  }, []);
-
   const getRandomJoke = useCallback(
     (category) => {
       fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
@@ -42,6 +32,18 @@ function App() {
     setSelectedCategory(category);
     getRandomJoke(category); // Fetch a new joke when the category changes
   };
+
+  useEffect(() => {
+    axios
+      .get("https://api.chucknorris.io/jokes/categories")
+      .then((response) => {
+        setCategories(response.data);
+        setSelectedCategory(response.data[0]);
+        getRandomJoke(response.data[0]); // Call getRandomJoke here
+      });
+
+     
+  }, []);
 
   return (
     <div className={styles.App}>

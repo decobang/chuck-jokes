@@ -4,6 +4,7 @@
     align-items: center;
     flex-direction: row; /* Changed from row-reverse to row */
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none; /* Firefox */
     gap: 4px;
     margin-top: 1rem;
