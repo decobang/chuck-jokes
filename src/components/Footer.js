@@ -5,7 +5,7 @@ function Footer() {
       <footer className={styles.footer}>
         <p>
           Created by David Coggin | [DC-5] | Powered by Chuck Norris Jokes API |
-          2024 Copyright
+          2024 Copyright All Rights Reserved | v2.0
         </p>
       </footer>
     );
