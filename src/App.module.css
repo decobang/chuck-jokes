@@ -1,85 +1,47 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #333; /* Dark gray */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.header {
-  height: 50px;
-  width: 100%;
-  margin-bottom: 2rem;
+  font-family: 'roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: whitesmoke;
+  overflow: hidden;
 }
 
-.footer {
-  height: 50px;
-  width: 100%;
-  margin-top: 2rem;
-  background-color: #c3c3c3;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.main-container {
-  display: flex;
+.App {
+ display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
+}
+
+.mainContainer {
+ display: grid;
+ grid-template-rows: auto 1fr auto;
+ height: 100%;
+}
+.buttonContainer {
+  display: flex;
   justify-content: center;
-  height: 70vh;
-  min-height: 500px;
-  max-width: 70vw;
-  background-color: #333; /* Light gray */
-  border-radius: 12px;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-.title {
-  color: #007bff; /* Dark gray */
-  text-shadow: 2px 2px #333; /* Red shadow */
-  font-size: 2.5em;
-}
-
-
-.button {
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white;
+.buttonContainer button {
+  padding: .5rem 1.5rem;
+  margin-bottom: 1re;
   border: none;
-  padding: 10px 20px;
-  margin: 10px 0;
+  border-radius: 4px;
+  background-color: #007bff;
+  font-family: 'roboto';
   cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition-duration: 0.4s;
+  transition: 0.3s;
 }
 
-.button:hover {
-  background-color: #0069d9; /* Darker blue */
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .main-container {
-    max-width: 100vw;
-    height: 100vh;
-    border-radius: 0px;
+@media (main-width: 700px) {
+  .buttonContainer button {
+    padding: .5rem 1rem;
   }
 
-  .title {
-    font-size: 2em;
-  }
 }

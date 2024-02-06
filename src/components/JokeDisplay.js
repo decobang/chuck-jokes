@@ -9,7 +9,7 @@ function JokeDisplay({ joke, onSwipeLeft }) {
 
     return (
         <div {...handlers} className={styles['joke-container']}>
-            <p>{joke}</p>
+           <div className={styles.textContainer}><p>{joke}</p></div>
         </div>
     );
 }

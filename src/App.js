@@ -1,71 +1,63 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import CategorySelector from './components/CategorySelector';
-import JokeDisplay from './components/JokeDisplay';
-import styles from './App.module.css';
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import CategorySelector from "./components/CategorySelector";
+import JokeDisplay from "./components/JokeDisplay";
+import styles from "./App.module.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [joke, setJoke] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [joke, setJoke] = useState("");
   const [usedJokeIds, setUsedJokeIds] = useState([]);
 
   useEffect(() => {
-    axios.get('https://api.chucknorris.io/jokes/categories')
-      .then(response => {
+    axios
+      .get("https://api.chucknorris.io/jokes/categories")
+      .then((response) => {
         setCategories(response.data);
         setSelectedCategory(response.data[0]);
         getRandomJoke(response.data[0]); // Call getRandomJoke here
       });
   }, []);
 
-  
-
-  const getRandomJoke = useCallback((category) => {
-    fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (!usedJokeIds.includes(data.id)) {
-          setJoke(data.value);
-          setUsedJokeIds([...usedJokeIds, data.id]);
-        } else {
-          getRandomJoke(category);
-        }
-      });
-  }, [usedJokeIds]);
+  const getRandomJoke = useCallback(
+    (category) => {
+      fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (!usedJokeIds.includes(data.id)) {
+            setJoke(data.value);
+            setUsedJokeIds([...usedJokeIds, data.id]);
+          } else {
+            getRandomJoke(category);
+          }
+        });
+    },
+    [usedJokeIds]
+  );
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    getRandomJoke(category); // Fetch a new joke when the category changes
   };
 
-  function Header() {
-    return (
-      <header className={styles.header}>
-        <h1 className={styles.title}>Chuck-N-Jokes</h1>
-      </header>
-    );
-  }
-
-  function Footer() {
-    return (
-      <footer className={styles.footer}>
-        <p>Created by David Coggin | [DC-5] | Powered by Chuck Norris Jokes API | 2024 Copyright</p>
-        
-        </footer>
-    );
-    }
-
   return (
-    <div className={styles['main-container']}>
+    <div className={styles.App}>
       <Header />
-        <CategorySelector 
-          categories={categories} 
-          selectedCategory={selectedCategory} 
-          onCategoryChange={handleCategoryChange} 
+      <div className={styles.mainContainer}>
+        <CategorySelector
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={handleCategoryChange} // Renamed prop to onCategoryChange
         />
-    <JokeDisplay joke={joke} onSwipeLeft={() => getRandomJoke(selectedCategory)} />
-    <button className={styles.button} onClick={() => getRandomJoke(selectedCategory)}>Next</button>
-    <Footer />
+        <JokeDisplay joke={joke} getRandomJoke={getRandomJoke} />
+        <div className={styles.buttonContainer}>
+          <button onClick={() => getRandomJoke(selectedCategory)}>Next</button>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -2,19 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    max-width: 50%;
-    height: 50%;
-    color: whitesmoke;
-    margin-top: 2rem;
+    text-align: center;
     padding: 2rem; 
     font-size: x-large;
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .joke-container {
-        max-width: 100%;
-        font-size: large;
-    }
+.textContainer {
+    max-width: 600px;
 }
